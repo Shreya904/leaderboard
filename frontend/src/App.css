@@ -1,0 +1,110 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff;
+  --table-header-bg: #f0f0f0;
+  --input-bg: #ffffff;
+  --btn-bg: #007bff;
+  --btn-hover-bg: #0056b3;
+  --success-color: #28a745;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --table-header-bg: #2c2c2c;
+  --input-bg: #2a2a2a;
+  --btn-bg: #1a73e8;
+  --btn-hover-bg: #135abc;
+  --success-color: #5af78e;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+h2 {
+  margin-bottom: 24px;
+  color: var(--text-color);
+}
+
+select,
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 300px;
+  background: var(--input-bg);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: var(--btn-bg);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+.toggle-theme {
+  float: right;
+  margin-top: -10px;
+  font-size: 14px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+th {
+  background-color: var(--table-header-bg);
+}
+
+.message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: var(--success-color);
+}
