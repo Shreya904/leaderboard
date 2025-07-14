@@ -127,7 +127,7 @@ npm start
 ## 🙋‍♀️ Author
 
 **Shreya Srivastava**
-[GitHub](https://github.com/Shreya904) | [LinkedIn]((https://www.linkedin.com/in/shreya-srivastava-2b11b225b/))
+[GitHub](https://github.com/Shreya904) | [LinkedIn](https://www.linkedin.com/in/shreya-srivastava-2b11b225b/)
 
 ---
 
