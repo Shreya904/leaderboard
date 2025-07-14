@@ -1,6 +1,6 @@
 import React from "react";
 
-const HistoryTable = ({ history }) => {
+const HistoryTable = ({ history, page, pages, onPageChange }) => {
   return (
     <div style={{ marginTop: "40px" }}>
       <h3>📜 Claim History</h3>
@@ -22,6 +22,21 @@ const HistoryTable = ({ history }) => {
           ))}
         </tbody>
       </table>
+
+      <div style={{ marginTop: "10px" }}>
+        <button disabled={page === 1} onClick={() => onPageChange(page - 1)}>
+          ⬅ Prev
+        </button>
+        <span style={{ margin: "0 10px" }}>
+          Page {page} of {pages}
+        </span>
+        <button
+          disabled={page === pages}
+          onClick={() => onPageChange(page + 1)}
+        >
+          Next ➡
+        </button>
+      </div>
     </div>
   );
 };

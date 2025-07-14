@@ -12,11 +12,27 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", userRoutes);
 app.get("/api/history", async (req, res) => {
-  const history = await ClaimHistory.find()
-    .sort({ timestamp: -1 })
-    .populate("userId", "name"); // populate with user name
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
 
-  res.json(history);
+  try {
+    const history = await ClaimHistory.find()
+      .sort({ timestamp: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .populate("userId", "name");
+
+    const total = await ClaimHistory.countDocuments();
+
+    res.json({
+      data: history,
+      page,
+      total,
+      pages: Math.ceil(total / limit),
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch history" });
+  }
 });
 
 // Connect to MongoDB

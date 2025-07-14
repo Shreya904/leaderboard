@@ -15,6 +15,8 @@ function App() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [darkMode, setDarkMode] = useState(true); // dark mode default
   const [history, setHistory] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
 
   useEffect(() => {
     document.body.className = darkMode ? "dark" : "";
@@ -39,10 +41,14 @@ function App() {
       .catch((err) => console.error("Leaderboard error:", err));
   };
 
-  const fetchHistory = () => {
+  const fetchHistory = (pageNum = 1) => {
     axios
-      .get("/api/history")
-      .then((res) => setHistory(res.data))
+      .get(`/api/history?page=${pageNum}&limit=5`)
+      .then((res) => {
+        setHistory(res.data.data);
+        setPage(res.data.page);
+        setPages(res.data.pages);
+      })
       .catch((err) => console.error("History error:", err));
   };
 
@@ -54,7 +60,7 @@ function App() {
       .then((res) => {
         setMessage(res.data.message);
         fetchLeaderboard();
-        fetchHistory();
+        fetchHistory(page); // refresh history after claiming points
       })
       .catch((err) => console.error(err));
   };
@@ -85,7 +91,12 @@ function App() {
           {message && <p>{message}</p>}
         </div>
 
-        <HistoryTable history={history} />
+        <HistoryTable
+          history={history}
+          page={page}
+          pages={pages}
+          onPageChange={fetchHistory}
+        />
       </div>
     </>
   );
