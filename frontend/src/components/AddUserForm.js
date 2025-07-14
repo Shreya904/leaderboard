@@ -5,7 +5,7 @@ const AddUserForm = ({ newUserName, setNewUserName, setUsers }) => {
   const handleAdd = () => {
     if (!newUserName.trim()) return alert("Name is required");
     axios
-      .post("/api/users", { name: newUserName })
+      .post(`${process.env.REACT_APP_API_URL}/api/users`, { name: newUserName })
       .then((res) => {
         setUsers((prev) => [...prev, res.data]);
         setNewUserName("");

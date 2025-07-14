@@ -7,6 +7,8 @@ import AddUserForm from "./components/AddUserForm";
 import Leaderboard from "./components/Leaderboard";
 import HistoryTable from "./components/HistoryTable";
 
+const API = process.env.REACT_APP_API_URL || "";
+
 function App() {
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState("");
@@ -25,25 +27,25 @@ function App() {
 
   useEffect(() => {
     const stored = localStorage.getItem("darkMode");
-    if (stored === "false") setDarkMode(false); // allow user toggle override
+    if (stored === "false") setDarkMode(false);
   }, []);
 
   useEffect(() => {
-    axios.get("/api/users").then((res) => setUsers(res.data));
+    axios.get(`${API}/api/users`).then((res) => setUsers(res.data));
     fetchLeaderboard();
     fetchHistory();
   }, []);
 
   const fetchLeaderboard = () => {
     axios
-      .get("/api/leaderboard")
+      .get(`${API}/api/leaderboard`)
       .then((res) => setLeaderboard(res.data))
       .catch((err) => console.error("Leaderboard error:", err));
   };
 
   const fetchHistory = (pageNum = 1) => {
     axios
-      .get(`/api/history?page=${pageNum}&limit=5`)
+      .get(`${API}/api/history?page=${pageNum}&limit=5`)
       .then((res) => {
         setHistory(res.data.data);
         setPage(res.data.page);
@@ -56,11 +58,11 @@ function App() {
     if (!selectedUserId) return alert("Please select a user");
 
     axios
-      .post(`/api/users/${selectedUserId}/claim`)
+      .post(`${API}/api/users/${selectedUserId}/claim`)
       .then((res) => {
         setMessage(res.data.message);
         fetchLeaderboard();
-        fetchHistory(page); // refresh history after claiming points
+        fetchHistory(page);
       })
       .catch((err) => console.error(err));
   };
