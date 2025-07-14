@@ -8,6 +8,10 @@ A full-stack web application built with **ReactJS**, **NodeJS**, and **MongoDB A
 - Toggle between light and dark mode
 
 ---
+## Preview
+[Live](leaderboard-alpha-bice.vercel.app)
+
+---
 
 ## 🚀 Features
 
