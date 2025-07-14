@@ -9,7 +9,7 @@ A full-stack web application built with **ReactJS**, **NodeJS**, and **MongoDB A
 
 ---
 ## Preview
-[Live](leaderboard-alpha-bice.vercel.app)
+[Live](https://leaderboard-alpha-bice.vercel.app/)
 
 ---
 
